@@ -1,0 +1,23 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node compiler/index.js",
+    "watch": "tsc -w -p ./compiler",
+    "build": "tsc -p ./compiler",
+    "deliver": "cp -r dist/* /data/www/docs && cp -r assets /data/www/docs"
+  },
+  "dependencies": {
+    "@types/node": "^18.0.5",
+    "gulp": "^4.0.2",
+    "markdown-it": "^13.0.1",
+    "through2": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/gulp": "^4.0.9",
+    "@types/markdown-it": "^12.2.3",
+    "@types/through2": "^2.0.36"
+  }
+}

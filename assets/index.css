@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+/* -------------------- */
+
+body {
+  display: flex;
+  height: 100%;
+}
+
+aside {
+  background: rebeccapurple;
+  overflow-y: auto;
+  flex-basis: 220px;
+  flex-shrink: 0;
+  padding: 10px;
+}
+
+aside ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main {
+  overflow-y: auto;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+main article {
+  max-width: 860px;
+  margin: 0 auto;
+}
