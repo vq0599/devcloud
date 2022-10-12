@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/github-markdown.css">
+  <link rel="stylesheet" href="./assets/index.css">
+  <title>
+    必须要知道的编程基础知识
+  </title>
+</head>
+<style>
+  
+</style>
+<body>
+  <article class="markdown-body">
+    <h1>
+      必须要知道的编程基础知识
+    </h1>
+    <!-- 必须要知道的编程基础知识 -->
+<!-- 2022-03-05 -->
+<h2>整型</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">字节(Byte)</th>
+<th style="text-align:center">位(Bit)</th>
+<th style="text-align:center">范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>int16</code></td>
+<td style="text-align:center">2</td>
+<td style="text-align:center"><code>2 * 8 = 16</code></td>
+<td style="text-align:center">-2<sup>16 - 1</sup> ~ 2<sup>16 - 1</sup> - 1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int32</code></td>
+<td style="text-align:center">4</td>
+<td style="text-align:center"><code>4 * 8 = 32</code></td>
+<td style="text-align:center">-2<sup>32 - 1</sup> ~ 2<sup>32 - 1</sup> - 1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>int64</code></td>
+<td style="text-align:center">8</td>
+<td style="text-align:center"><code>8 * 8 = 64</code></td>
+<td style="text-align:center">-2<sup>64 - 1</sup> ~ 2<sup>64 - 1</sup> - 1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>一个字节是8位</li>
+<li>无符号整型因为不需要符号位所以可表示的数会多一位</li>
+</ul>
+<h4>为什么是<code>x - 1</code>次方？</h4>
+<p>二进制<code>x</code>位所能表示的最大（有符号）十进制数为<code>2</code><sup><code>x</code></sup><code> - 1</code>，但是由于第一位是<strong>符号位</strong>，所以就变成了<code>2</code><sup><code>x - 1</code></sup><code> - 1</code>。</p>
+<h4>为什么最小值不需要减<code>1</code></h4>
+<p>对于有符号整型而言，是存在<code>+0</code>和<code>-0</code>的，以<code>int16</code>位为例：</p>
+<pre><code class="language-cpp">0000 0000 0000 0000 // - 0
+1000 0000 0000 0000 // + 0
+</code></pre>
+<p>但十进制里面没有<code>-0</code>这么一说，所以就把<code>-0</code>当作是最小负值<code>-2</code><sup><code>x - 1</code></sup>，</p>
+<h4><code>int</code>是几位的？</h4>
+<p>C++中<code>int</code>即为<code>int32</code></p>
+<h4><code>long</code>是几位的？</h4>
+<p>关于<code>long</code>，C标准没有规定其占用几个字节，只要求不短于<code>int</code></p>
+<h2>JS里的二进制</h2>
+<h4>ArrayBuffer</h4>
+<p><code>ArrayBuffer</code>是对<strong>固定长度</strong>的<strong>连续</strong>内存空间的引用。</p>
+<pre><code class="language-ts">const buffer = new ArrayBuffer(16);
+console.log(buffer.byteLength) // 16
+</code></pre>
+<p>以上代码表示分配一个<code>16</code>字节的连续内存空间，并用<code>0</code>进行预填充。</p>
+<pre><code class="language-ts">const view = new Uint8Array(buffer);
+console.log(view.length); // 16
+console.log(view.byteLength); // 16
+</code></pre>
+<p>将 buffer 视为一个 8 位整数的序列，每位占 1 各字节，则可代表 16 位数。</p>
+<pre><code class="language-ts">const view = new Uint16Array(buffer);
+console.log(view.length); // 8
+console.log(view.byteLength); // 16
+</code></pre>
+<p>将 buffer 视为一个 16 位整数的序列，每位占 1 各字节，则可代表 8 位数。
+<img src="https://zh.javascript.info/article/arraybuffer-binary-arrays/arraybuffer-views.svg" alt=""></p>
+<h3>特殊的Uint8ClampedArray</h3>
+<p>当数组元素越界时，Uint8Array会自动换算，而Uint8ClampedArray会固定取边界值。</p>
+<pre><code class="language-ts">const x = new Uint8ClampedArray([17, -45.3, 257]); // [17, 255, 0]
+
+const x = new Uint8Array([17, -45.3, 257]); // [17, 211, 1]
+</code></pre>
+<p>注意，并不存在<code>Uint16ClampedArray</code>、<code>Uint32ClampedArray</code>，可别脑洞大开。</p>
+<h2>参考资料</h2>
+<ul>
+<li><a href="https://zh.javascript.info/arraybuffer-binary-arrays">https://zh.javascript.info/arraybuffer-binary-arrays</a></li>
+</ul>
+
+  </article>
+</body>
+</html>
