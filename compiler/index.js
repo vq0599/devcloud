@@ -1,8 +1,7 @@
 import MarkdownIt from 'markdown-it'
-import * as fs from 'fs/promises'
-import * as gulp from 'gulp'
-import * as through2 from 'through2'
-import * as path from 'path'
+import fs from 'fs/promises'
+import gulp from 'gulp'
+import through2 from 'through2'
 
 async function main() {
   const md = new MarkdownIt({ html: true });
@@ -13,16 +12,16 @@ async function main() {
   gulp.src('./src/*.md')
    .pipe(through2.obj((file, _, cb) => {
       if (file.isBuffer()) {
-        const source = file.contents.toString() as string
+        const source = file.contents.toString()
         const [ titleDoc ] = source.split('\n')
         const matched = /<!-- (.+) -->/.exec(titleDoc)
         const title = matched ? matched[1] : ''
         const body = md.render(source);
         const contents = template
-          .replace(contentFlag, body)
-          .replace(titleFlag, title)
-          
-        file.path = (file.path as string).replace(/.md$/, '.html')
+          .replaceAll(contentFlag, body)
+          .replaceAll(titleFlag, title)
+
+        file.path = file.path.replace(/.md$/, '.html')
         file.contents = Buffer.from(contents)
       }
       cb(null, file)

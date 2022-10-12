@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "dev": "node compiler/index.js",
-    "watch": "tsc -w -p ./compiler",
-    "build": "tsc -p ./compiler",
-    "deliver": "cp -r dist/* /data/www/docs && cp -r assets /data/www/docs"
+    "build": "rm -rf dist && node compiler/index.js && cp -r assets dist"
   },
   "dependencies": {
     "@types/node": "^18.0.5",
