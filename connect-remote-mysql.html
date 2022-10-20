@@ -24,13 +24,13 @@
 <ol>
 <li>开一个SSH隧道</li>
 </ol>
-<pre><code class="language-shell">ssh -fCPN -L 3307:127.0.0.1:3306 root@39.96.206.161
+<pre><code class="language-shell">ssh -fCPN -L 3307:127.0.0.1:3306 root@38.76.1906.152
 </code></pre>
 <ol start="2">
 <li>本地服务访问<code>127.0.0.1:3307</code></li>
 </ol>
-<h3>为什么直接用<code>ip:port</code>的方式连接？</h3>
-<p>MySQL默认不允许远程直连，需要修改一堆环境配置太折腾了</p>
+<h3>为什么不直接用<code>ip:port</code>的方式连接？</h3>
+<p>MySQL默认不允许远程直连，需要修改一堆环境配置太折腾了。</p>
 
   </article>
 </body>
