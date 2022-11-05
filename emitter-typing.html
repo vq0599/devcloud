@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/github-markdown.css">
+  <link rel="stylesheet" href="./assets/index.css">
+  <title>
+    给订阅发布函数添加类型推导
+  </title>
+</head>
+<style>
+  
+</style>
+<body>
+  <article class="markdown-body">
+    <h1>
+      给订阅发布函数添加类型推导
+    </h1>
+    <!-- 给订阅发布函数添加类型推导 -->
+<!-- 2022-11-05 -->
+<p>想着挺简单，打算自己随意实现个。发现没有类型推导有些别扭，于是搜了搜资料结合自己使用习惯改进了一下，试试吧~
+（折腾了挺久，早知道直接找个 Library 用了。。。）</p>
+<pre><code class="language-ts">type AnyFunction = (...args: any[]) =&gt; any;
+
+export class Emitter&lt;T extends Record&lt;keyof T, AnyFunction&gt;&gt; {
+  store: { [K in keyof T]?: Array&lt;T[K]&gt; } = {};
+  on&lt;K extends keyof T&gt;(event: K, callback: T[K]) {
+    this.store[event] = (this.store[event] || []).concat(callback);
+  }
+  off&lt;K extends keyof T&gt;(event: K, callback: T[K]) {
+    this.store[event] = (this.store[event] || []).filter(
+      (cb) =&gt; cb !== callback
+    );
+  }
+  emit&lt;K extends keyof T&gt;(event: K, ...args: Parameters&lt;T[K]&gt;) {
+    const callbacks = this.store[event];
+    callbacks?.forEach((cb) =&gt; {
+      cb.call(undefined, ...args);
+    });
+  }
+}
+
+interface EventMap {
+  drag: (id: number) =&gt; void;
+}
+
+export const emitter = new Emitter&lt;EventMap&gt;();
+
+// OK!
+emitter.emit('drag', 63307);
+
+// Argument of type 'string' is not assignable to parameter of type 'number'.
+emitter.emit('drag', '63307');
+
+// Argument of type '(id: string) =&gt; void' is not assignable to parameter of type '(id: number) =&gt; void'.
+emitter.on('drag', (id: string) =&gt; {
+  console.log(id);
+});
+</code></pre>
+
+  </article>
+</body>
+</html>
