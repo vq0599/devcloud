@@ -42,7 +42,7 @@ async function main() {
   }));
 }
 </code></pre>
-<p>在不关系执行顺序的情况下，这是一种比较理想的方式。</p>
+<p>在不关心执行顺序的情况下，这是一种比较理想的方式。</p>
 <h2>迭代依赖</h2>
 <p><code>Array.reduce</code>场景下，每次迭代会都依赖于前一次，那应该怎么做呢？（这也是我记录下这个小问题的原因）</p>
 <pre><code class="language-ts">async function main() {
