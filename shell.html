@@ -23,11 +23,26 @@
 <blockquote>
 <p>https://shellscript.readthedocs.io/zh_CN/latest/index.html</p>
 </blockquote>
-<h2>操作符</h2>
-<h3>文件判断</h3>
+<h2>文件操作符</h2>
 <ul>
-<li><code>-e</code>: 文件是否存在</li>
-<li><code>-d</code>: 是否为目录</li>
+<li>
+<p><code>-d</code>：检测文件是否是目录，如果是，则返回 <code>true</code></p>
+</li>
+<li>
+<p><code>-r</code>：检测文件是否可读，如果是，则返回 <code>true</code></p>
+</li>
+<li>
+<p><code>-w</code>：检测文件是否可写，如果是，则返回 <code>true</code></p>
+</li>
+<li>
+<p><code>-x</code>：检测文件是否可执行，如果是，则返回 <code>true</code></p>
+</li>
+<li>
+<p><code>-s</code>：检测文件是否为空（文件大小是否大于0），不为空返回 <code>true</code></p>
+</li>
+<li>
+<p><code>-e</code>：检测文件（包括目录）是否存在，如果是，则返回 <code>true</code></p>
+</li>
 </ul>
 
   </article>
