@@ -44,6 +44,11 @@
 <p><code>-e</code>：检测文件（包括目录）是否存在，如果是，则返回 <code>true</code></p>
 </li>
 </ul>
+<h2>奇怪语法</h2>
+<h3><code>:-</code></h3>
+<pre><code class="language-shell"># 如果MY_VAR已经定义且不为空，则使用其值，否则使用默认值&quot;fallback&quot;
+result=${MY_VAR:-fallback}
+</code></pre>
 
   </article>
 </body>
