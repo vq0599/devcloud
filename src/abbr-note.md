@@ -7,5 +7,6 @@
 | ARPU  | Average Revenue Per User | 每个用户的平均收入 |
 | GMV  | Gross Merchandise Volume | 商品成交总额 |
 | PTO  | Paid Time Off | 带薪假期 |
+| GTM  | Go To Market | 进入市场（策略） |
 
 
