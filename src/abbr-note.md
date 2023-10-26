@@ -8,5 +8,4 @@
 | GMV  | Gross Merchandise Volume | 商品成交总额 |
 | PTO  | Paid Time Off | 带薪假期 |
 | GTM  | Go To Market | 进入市场（策略） |
-
-
+| CPA  | Cost Per Acquisition | （每）获客成本 |
