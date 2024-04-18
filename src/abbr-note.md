@@ -29,6 +29,8 @@
 | OOO | Out of Office | 不在办公室，一般指休假 |
 | TBD | To Be Discussed/Done/Determined | 待定 |
 | TBH | To Be Hired | 待招聘 |
+| FYI | For Your Information | 供你参考 |
+| NSFW | Not Safe For Work | 不适于工作场所浏览 |
 
 # Proper Noun
 | Abbreviation | Full Name | Remark |
